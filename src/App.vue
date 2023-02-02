@@ -1,14 +1,8 @@
 <template>
   <section class="todoapp">
-    <TodoHeader @submit="submit" />
-    <TodoMain
-      :list="list"
-      @del="del"
-      @changeIsDone="changeIsDone"
-      :type="type"
-      @checkAll="checkAll"
-    />
-    <TodoFooter :list="list" @clearDone="clearDone" v-model="type" />
+    <TodoHeader />
+    <TodoMain />
+    <TodoFooter />
   </section>
 </template>
 
@@ -20,41 +14,14 @@ import TodoFooter from './components/TodoFooter.vue'
 export default {
   components: { TodoHeader, TodoMain, TodoFooter },
   data() {
-    return {
-      list: JSON.parse(localStorage.getItem('list')) || [],
-      type: 'all',
-    }
+    return {}
   },
-  methods: {
-    del(id) {
-      this.list = this.list.filter(item => id !== item.id)
-    },
-    changeIsDone(id) {
-      this.list.forEach(item => {
-        if (item.id === id) item.isDone = !item.isDone
-      })
-    },
-    submit(name) {
-      this.list.unshift({ id: crypto.randomUUID(), name, isDone: false })
-    },
-    clearDone() {
-      this.list = this.list.filter(item => !item.isDone)
-    },
-    // changeType(type) {
-    //   this.type = type
-    // },
-    checkAll(status) {
-      this.list.forEach(item => (item.isDone = status))
-    },
+  created() {
+    this.$store.dispatch('getList')
   },
-  watch: {
-    list: {
-      handler() {
-        localStorage.setItem('list', JSON.stringify(this.list))
-      },
-      deep: true,
-    },
-  },
+
+  methods: {},
+  watch: {},
 }
 </script>
 

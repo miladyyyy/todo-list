@@ -3,17 +3,22 @@
     {
       "id": 100001,
       "name": "吃饭",
-      "isDone": 128
+      "isDone": true
     },
     {
       "id": 100002,
       "name": "睡觉",
-      "isDone": 39
+      "isDone": false
     },
     {
-      "id": 100003,
+      "id": "6eef6d6d-7637-4e88-a44f-6a9c777da298",
+      "name": "洗澡",
+      "isDone": false
+    },
+    {
+      "id": "6b46159f-dcc2-48aa-b60c-08e7cb7c335c",
       "name": "打豆豆",
-      "isDone": 128
+      "isDone": false
     }
   ]
 }
