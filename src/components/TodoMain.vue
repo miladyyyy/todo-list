@@ -2,7 +2,7 @@
   <div>
     <!-- 主体部分 -->
     <section class="main">
-      <input id="toggle-all" class="toggle-all" type="checkbox" />
+      <input id="toggle-all" class="toggle-all" type="checkbox" @change="toogleAll" />
       <label for="toggle-all">Mark all as complete</label>
       <ul class="todo-list">
         <!-- 当任务已完成，可以给 li 加上 completed 类，会让元素加上删除线 -->
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'TodoMain',
@@ -45,6 +45,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(['toogleAll']),
+
     deletTodo(id) {
       this.$store.dispatch('deletTodo', id)
     },

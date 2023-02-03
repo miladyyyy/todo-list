@@ -22,6 +22,8 @@ export default {
   },
   methods: {
     addTodo() {
+      if (!this.newTodo) return
+
       this.$store.dispatch('addTodo', {
         id: crypto.randomUUID(),
         name: this.newTodo,

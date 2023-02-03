@@ -30,6 +30,10 @@ export default new Vuex.Store({
     changeType(state, payload) {
       state.filterType = payload
     },
+
+    updateToogleAll(state, payload) {
+      state.list.forEach(item => (item.isDone = payload.target.checked))
+    },
   },
 
   actions: {
@@ -76,6 +80,17 @@ export default new Vuex.Store({
         method: 'PATCH',
         url: 'http://localhost:3000/todos/' + payload.id,
         data: { isDone: payload.val },
+      })
+    },
+
+    toogleAll(context, payload) {
+      context.state.list.forEach(async item => {
+        await axios({
+          method: 'PATCH',
+          url: 'http://localhost:3000/todos/' + item.id,
+          data: { isDone: payload.target.checked },
+        })
+        context.commit('updateToogleAll', payload)
       })
     },
   },
